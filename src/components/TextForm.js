@@ -26,12 +26,13 @@ export default function TextForm(props) {
     }
 
     const [text, setText] =useState('Enter text here')
+    
   return (
-    <>
-      <div className='container'>
-          <h1 className="mt-5">{props.heading}</h1>
+    <div >
+      <div className='container' >
+      <h1 className="mt-5">{props.heading}</h1>
           <div className="mt-4">
-          <textarea className="form-control" value={text} onChange={handleChange} id="Textarea" rows="8"></textarea>
+          <textarea className="form-control" value={text} onChange={handleChange}  id="Textarea" rows="8"></textarea>
           </div>
           <button type="button" onClick={handleUp} className="btn btn-success mt-3">Convert To Uppercase</button>
           <button type="button" onClick={handlelow} className="btn btn-success mt-3 ms-3">Convert To Lowercase</button>
@@ -45,6 +46,6 @@ export default function TextForm(props) {
           <h3>Summary</h3>
           <p>{text}</p>
       </div>
-    </>
+    </div>
   )
 }
