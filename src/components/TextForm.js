@@ -5,28 +5,35 @@ export default function TextForm(props) {
         // console.log("handle up is clicked: + text");
         let newText = text.toUpperCase();
         setText(newText)
+        props.showAlert("Converted to Uppercase", "success")
     
     }
     const handlelow = () =>{
       let newText = text.toLowerCase();
       setText(newText)
+      props.showAlert("Converted to lowercase", "success")
     }
     const handlclear =() =>{
       let newText= '';
       setText(newText)
+      props.showAlert("Text is Cleared!", "success")
     }
     const handlReverse =() =>{
       let newText = text.split("").reverse().join("");
       setText(newText)
+      props.showAlert("Text is Reversed!", "success")
     }
     const handlcopy=() =>{
         let text =document.getElementById("Textarea");
         text.select();
         navigator.clipboard.writeText(text.value);
+      props.showAlert("Text Copied!", "success")
+
     }
     const handleExSpaces =()=>{
       let newText =text.split(/[ ]+/);
       setText(newText.join(" "))
+      props.showAlert("Extra spaces gone!", "success")
     }
 
     const handleChange = (event) =>{
