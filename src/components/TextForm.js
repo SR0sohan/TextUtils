@@ -19,6 +19,15 @@ export default function TextForm(props) {
       let newText = text.split("").reverse().join("");
       setText(newText)
     }
+    const handlcopy=() =>{
+        let text =document.getElementById("Textarea");
+        text.select();
+        navigator.clipboard.writeText(text.value);
+    }
+    const handleExSpaces =()=>{
+      let newText =text.split(/[ ]+/);
+      setText(newText.join(" "))
+    }
 
     const handleChange = (event) =>{
         // console.log('change is happening');
@@ -29,22 +38,24 @@ export default function TextForm(props) {
     
   return (
     <div >
-      <div className='container' >
+      <div className='container' style={{color:props.mode==='dark'?'white':'black'}}>
       <h1 className="mt-5">{props.heading}</h1>
           <div className="mt-4">
-          <textarea className="form-control" value={text} onChange={handleChange}  id="Textarea" rows="8"></textarea>
+          <textarea className="form-control" value={text} onChange={handleChange} style={{backgroundColor:props.mode==='dark'?'gray':'white'}} id="Textarea" rows="8"></textarea>
           </div>
           <button type="button" onClick={handleUp} className="btn btn-success mt-3">Convert To Uppercase</button>
           <button type="button" onClick={handlelow} className="btn btn-success mt-3 ms-3">Convert To Lowercase</button>
           <button type="button" onClick={handlReverse} className="btn btn-success mt-3 ms-3">Reverse your text</button>
-          <button type="button" onClick={handlclear} className="btn btn-success mt-3 ms-3">Clear</button>
+          <button type="button" onClick={handleExSpaces} className="btn btn-success mt-3 ms-3">Remove Extra Spaces</button>
+          <button type="button" onClick={handlcopy} className="btn btn-success mt-3 ms-3">Copy Text</button>
+          <button type="button" onClick={handlclear} className="btn btn-success mt-3 ms-3">Clear Text</button>
       </div>
-      <div className="dontainer my-3">
+      <div className="container my-3" style={{color:props.mode==='dark'?'white':'black'}}>
           <h2>Preview</h2>
-          <p>{text.split(" ").length} words and {text.length} characters</p>
+          <p>{text.split(" ").length} words and {text.length} characters.</p>
           <p>Approximately {0.08 * text.split(" ").length} muinutes to read.</p>
           <h3>Summary</h3>
-          <p>{text}</p>
+          <p>{text.length>0?text:'Enter some text avobe to preview here.'}</p>
       </div>
     </div>
   )
