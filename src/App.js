@@ -1,10 +1,15 @@
 
 import './App.css';
-// import About from './components/About';
+import About from './components/About';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import React, { useState } from 'react'
 import Alert from './components/Alert';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 
 function App() {
@@ -37,15 +42,23 @@ function App() {
     
   }
   return (
-    <div>      
-      <Navbar Title="TextUtils" About="About TextUtils" mode ={mode} shiftMode ={shiftMode}/>
-      <Alert alert={alert}/>
-      <div className="container">
-        <TextForm heading="Enter text to Analyze" showAlert={showAlert} mode ={mode}/>
-        {/* <About/> */}
+    
+      <Router>
+        <Navbar Title="TextUtils" About="About Us" mode ={mode} shiftMode ={shiftMode}/>
+        <Alert alert={alert}/>
+        <div className="container">
 
-      </div>
-    </div>
+          <Switch>           
+            <Route  path="/">
+              <TextForm heading="Enter text to Analyze" showAlert={showAlert} mode ={mode}/>
+            </Route>
+            <Route  path="/About">
+              <About/>
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    
   );
 }
 
